@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>مفكرتي</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+        <style>
+        :root {
+            scroll-behavior: smooth;
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 20px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 50px;
+            box-shadow: 1px 3px 5px rgba(168, 168, 168, 0.774) inset;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #ff4080ce;
+            transition: 0.5s linear;
+            border-radius: 15px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff4080a8;
+        }
+
+        body {
+            background-color: #ff4080ce;
+            font-family: 'Tajawal', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .tasks-table {
+            background-color: rgb(239, 239, 239);
+            width: 60%;
+            margin-top: 130px;
+        }
+
+        button {
+            font-size: 20px;
+            border: none;
+            box-shadow: 0px 3px 5px rgb(168, 168, 168, 0.3);
+        }
+
+        button.circular {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            line-height: 0;
+        }
+
+        .material-symbols-outlined {
+            transition: 0.2s linear;
+        }
+
+        .actions {
+            transition: 0.2s;
+        }
+
+        .actions:hover {
+            font-size: 28px;
+            box-shadow: 0px 3px 15px rgba(97, 97, 97, 0.952);
+        }
+
+        .calender:hover {
+            color: #a32752ab;
+        }
+
+        #btn {
+            float: right;
+            background: #cc4977c0;
+            margin-right: 10px;
+            color: black;
+            transition: 0.3s linear;
+        }
+
+        #btn:hover {
+            background-color: #4a4a4a;
+            color: #ff4080ce;
+        }
+
+        .task {
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.692);
+            padding: 4px;
+            border-bottom: 1px solid black;
+            transition: box-shadow 0.2s;
+            border-radius: 15px
+        }
+
+        .task:hover {
+            box-shadow: 0px 3px 15px rgb(97, 97, 97, 0.843);
+        }
+        .done{
+            background-color: rgb(158, 253, 160);
+        }
+        .photo1 {
+            width: 100px;
+            position: relative;
+            top: -420px;
+            transform: rotate(140deg);
+            transition: 0.5s;
+        }
+        #photo1 {
+            width: 100px;
+            position: relative;
+            top: 100px;
+            transform: rotate(140deg);
+            transition: 0.5s;
+        }
+        .photo1:hover {
+            transform: rotate(0);
+            padding: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.288);
+            border-radius: 50%;
+        }
+
+        #pets {
+            position: relative;
+            left: 90%;
+            transform: rotate(300deg);
+            font-size: 50px;
+            top: -100px;
+        }
+
+        #pets:hover {
+            color: #4a4a4a;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        #pets2:hover {
+            color: #4a4a4a;
+        }
+
+        #pets2 {
+            position: relative;
+            right: 0%;
+            font-size: 50px;
+            top: -100px
+        }
+
+        /*start animation */
+        .bounce {
+            height: 50px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #4a4a4a;
+            border-radius: 15px;
+            background-color: #4a4a4a;
+            top: 70px;
+        }
+
+        .bounce p {
+            color: white;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            line-height: 50px;
+            text-align: center;
+            -moz-transform: translateX(50%);
+            -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+            -moz-animation: bouncing-text 5s linear infinite alternate;
+            -webkit-animation: bouncing-text 5s linear infinite alternate;
+            animation: bouncing-text 10s linear infinite alternate;
+
+        }
+
+        @-moz-keyframes bouncing-text {
+            0% {
+                -moz-transform: translateX(50%);
+            }
+
+            100% {
+                -moz-transform: translateX(-50%);
+            }
+        }
+
+        @-webkit-keyframes bouncing-text {
+            0% {
+                -webkit-transform: translateX(50%);
+            }
+
+            100% {
+                -webkit-transform: translateX(-50%);
+            }
+        }
+
+        @keyframes bouncing-text {
+            0% {
+                -moz-transform: translateX(50%);
+                -webkit-transform: translateX(50%);
+                transform: translateX(50%);
+            }
+
+            100% {
+                -moz-transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+            }
+        }
+
+        /* end animation */
+        /*start media*/
+        @media(max-width:767px) {
+            .photo1 {
+                top: -480px;
+                transition: 0.3s;
+                transform: rotate(0deg);
+            }
+
+            #pets {
+                top: 50px;
+            }
+
+            #pets2 {
+                top: 50px;
+                right: 40px
+            }
+
+            .actions {
+
+                font-size: 10px;
+            }
+
+            .actions:hover {
+                font-size: 10px;
+                box-shadow: 0px 3px 15px rgba(97, 97, 97, 0.952);
+            }
+
+            .circular {
+                width: 10px;
+                height: 10px;
+                left: 8px;
+                bottom: -10px;
+                position: relative;
+            }
+        }
+
+        /*end media */
+    </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="./all.min.css">
+    </head>
+
+    <body>
+        <img
+        src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/57884/panda-emoji-clipart-xl.png"
+        alt="photo"
+        class="photo1" onclick="animeGo2()" id="photo1">
+        <!-- #cc4977 -->
+        <div class="container" id="start" style="direction: rtl;">
+            <!-- start center div  -->
+            <div
+                style="display: flex; justify-content:center;align-items:center;">
+                <!-- start tasks table  -->
+                <div class="tasks-table" style="border-radius:10px">
+                    <!-- start header  -->
+                    <div
+                        style="width: 100%; text-align:center;background-color:rgba(255, 255, 255, 0);color:gray;padding-top:8px;padding-bottom:8px;border-radius:9px">
+                        <h1 style="display: inline;">مهامي</h1>
+                        <button class="circular" id="btn" style><span
+                                class="material-symbols-outlined ">
+                                add
+                            </span>
+                        </button>
+                    </div>
+                    <!-- end header  -->
+                    <!-- start tasks  -->
+                    <div class="tasks" style="padding: 20px;" id="tasks">
+                        <!-- start task  -->
+                        <div class="task" style>
+                            <!-- start task info  -->
+                            <div style="width:70%">
+                                <h2>قراءة كتاب </h2>
+                                <br>
+                                <br>
+                                <div>
+                                    <span
+                                        class="material-symbols-outlined calender">
+                                        calendar_month
+                                    </span>
+                                    <span style="position:relative;top: -5px;">
+                                        10/10/2030
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- end task info  -->
+                            <!-- start task actions -->
+                            <div
+                                style="display: flex; justify-content:space-between;align-items:center;width:20%;">
+                                <button class="circular"
+                                    style="background-color: rgba(255, 0, 0, 0.774);color:white">
+                                    <i class='fa fa-trash actions'></i>
+                                </button>
+                                <button class="circular"
+                                    style="background-color: rgba(0, 128, 0, 0.918);color:white">
+                                    <i class="fa fa-check actions "
+                                        aria-hidden="true"></i>
+                                </button>
+                                <button class="circular"
+                                    style="background-color: rgba(0, 0, 255, 0.795);color:white">
+                                    <i class="fas fa-edit actions"></i>
+                                </button>
+                            </div>
+                            <!-- end task actions -->
+                        </div>
+                        <!-- end task  -->
+                    </div>
+                    <!-- end tasks  -->
+                </div>
+                <!-- end tasks table  -->
+            </div>
+            <!-- end center div  -->
+        </div>
+        <span class="material-symbols-outlined" id="pets" style>
+            pets
+        </span>
+        <span class="material-symbols-outlined" id="pets2" style>
+            emoji_nature
+        </span>
+        <div class="bounce">
+            <p> 🤍..{ وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ أُجِيبُ
+                دَعْوَةَ الدَّاعِ إِذَا دَعَانِ فَلْيَسْتَجِيبُوا لِي
+                وَلْيُؤْمِنُوا بِي لَعَلَّهُمْ يَرْشُدُونَ } </p>
+        </div>
+        <a
+            style="font-size: 30px; position:fixed;bottom:-2px;left:25px;text-decoration:none"
+            class="emoji"
+            href="#start">🐼</a>
+        <img
+            src="https://creazilla-store.fra1.digitaloceanspaces.com/emojis/57884/panda-emoji-clipart-xl.png"
+            alt="photo"
+            class="photo1" onclick="animeGo()" id="photo2">
+
+    </body>
+    <script>
+    function animeGo() {
+
+        anime({
+            targets: '#photo2',
+            translateX: 1190,
+            rotate: '1turn',
+            duration: 5000,
+            translateY: -40,
+        });
+
+    }
+    function animeGo2() {
+
+        anime({
+            targets: '#photo1',
+            translateX: 1190,
+            rotate: '1turn',
+            duration: 5000,
+            translateY: -40,
+        });
+
+    }
+    let task= {
+        "title": " الدعاء لي",
+        "date": "28/12/2023",
+        "isDone": false,
+    }
+    let tasks = [
+        {
+            "title": "قراءة القرآن",
+            "date": "28/12/2023",
+            "isDone": false,
+        }, {
+            "title": "صلاة الفروض",
+            "date": "28/12/2023",
+            "isDone": false,
+        },
+        {
+            "title": " الدعاء لي",
+            "date": "28/12/2023",
+            "isDone": false,
+        },
+       
+
+    ]       
+
+        function getTasksFromStorage(){
+            let retrievedTasks=JSON.parse(localStorage.getItem("tasks"))
+            if (retrievedTasks==null){
+                tasks=[]
+            }
+            else{
+                tasks=retrievedTasks;
+            }
+
+        }
+        getTasksFromStorage();
+    function fillTasksOnThePage(){
+
+    let index=0;
+    document.getElementById("tasks").innerHTML=''
+    for(task of tasks){
+        let content=`
+        <!-- start task  -->
+        <div class="task ${task.isDone?"done":""}" style>
+            <!-- start task info  -->
+                <div style="width:70%">
+                    <h2>${task.title}</h2>
+                    <br>
+                    <br>
+                    <div>
+                        <span class="material-symbols-outlined calender">
+                            calendar_month
+                        </span>
+                        <span style="position:relative;top: -5px;">
+                            ${task.date}
+                        </span>
+                    </div>
+                </div>
+                <!-- end task info  -->
+                <!-- start task actions -->
+                <div style="display: flex; justify-content:space-between;align-items:center;width:20%;">
+                    <button class="circular" onclick="deleteTask(${index})" style="background-color: rgba(255, 0, 0, 0.774);color:white">
+                        <i class='fa fa-trash actions'></i>
+                    </button>
+                    ${task.isDone?`
+                        <button class="circular" onclick={completeTask(${index})} style="background-color: rgba(118,0,101);color:white">
+                            <i class="fa fa-ban actions " aria-hidden="true"></i>
+                        </button>`:`
+                    <button class="circular" onclick={completeTask(${index})} style="background-color: rgba(0, 128, 0, 0.918);color:white">
+                        <i class="fa fa-check actions " aria-hidden="true"></i>
+                    </button>`}
+                    
+                    <button onclick="editTask(${index})" class="circular" style="background-color: rgba(0, 0, 255, 0.795);color:white">
+                        <i class="fas fa-edit actions"></i>
+                    </button>
+                </div>
+            <!-- end task actions -->
+        </div>
+        <!-- end task  -->
+        `;
+        document.getElementById("tasks").innerHTML+=content;
+        index++;
+    }
+}
+fillTasksOnThePage()
+//alert(name)
+    document.getElementById("btn").addEventListener('click', function(){
+        let now=new Date();
+        let date=now.getDate()+"/"+(now.getMonth()+1)+"/"+ now.getFullYear()
+        let taskName= prompt("ادخل نشاطك :")
+        let taskObj={
+            "title":taskName,
+            "date":date,
+            "isDone":false
+        }
+        tasks.push(taskObj);
+
+        storeTasks();
+        fillTasksOnThePage()
+    })
+    function deleteTask(index){
+        let task=tasks[index];
+        let isConfirmed=confirm("هل أنت متأكد من حذف:"+task.title)
+        if(isConfirmed){
+            tasks.splice(index,1);
+            storeTasks();
+            fillTasksOnThePage();
+        }
+    }
+    function editTask(index){
+        let task=tasks[index];
+        let newTaskTitle=prompt("الرجاء تحديد عنوان المهمة الجديد :",task.title)
+        task.title=newTaskTitle;
+        storeTasks();
+        fillTasksOnThePage();
+
+    }
+    function completeTask(index){
+        let task=tasks[index];
+        if(task.isDone){
+            task.isDone =false;
+        }
+        else{
+            task.isDone=true;
+
+        }
+        //or
+        //task.isDone=!task.isDone;
+        storeTasks();
+        fillTasksOnThePage();
+
+    }
+    function storeTasks(){
+        let tasksString=JSON.stringify(tasks);
+        localStorage.setItem("tasks",tasksString);
+    }
+</script>
+
+</html>
